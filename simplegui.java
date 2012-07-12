@@ -1,3 +1,4 @@
+//A Simple animated gui
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -45,18 +46,16 @@ public class simplegui{
 		}
 	}
 	class mypanel extends JPanel{
-	public void paintComponent(Graphics g){
-		g.setColor(Color.white);
-		g.fillRect(0,0,this.getWidth(),this.getHeight());
-		int red=(int)(Math.random()*255);
-		int green=(int)(Math.random()*255);
-		int blue=(int)(Math.random()*255);
-		Color randomcolor=new Color(red,green,blue);
-		g.setColor(randomcolor);
-		g.fillOval(x,y,40,40);
-	}
+		public void paintComponent(Graphics g){
+			g.setColor(Color.white);
+			g.fillRect(0,0,this.getWidth(),this.getHeight());
+			int red=(int)(Math.random()*255);
+			int green=(int)(Math.random()*255);
+			int blue=(int)(Math.random()*255);
+			Color randomcolor=new Color(red,green,blue);
+			g.setColor(randomcolor);
+			g.fillOval(x,y,40,40);
+		}
 	
-}
+	}
 }	
-
-//nothing more 
