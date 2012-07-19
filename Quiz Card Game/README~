@@ -1,0 +1,5 @@
+***A Simple Flash Card Game adopted from Head First Java********
+
+The first app QuizCardBuilder.java is used for creating and saving flashcards(Question and Answers).
+The second app QuizCardPlayer.java is used for actually playing the game.
+So first load QuizCardBuilder, save a few cards and then load QuizCardPlayer and enjoy! 
