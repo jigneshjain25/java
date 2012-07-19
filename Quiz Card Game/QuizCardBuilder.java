@@ -91,6 +91,7 @@ public class QuizCardBuilder{
 	
 	class newListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
+			nextButton.setEnabled(true);
 			clearCard();
 			cardList.clear();
 			
