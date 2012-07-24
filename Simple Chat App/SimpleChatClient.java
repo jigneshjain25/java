@@ -34,7 +34,9 @@ public class SimpleChatClient
         qScroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         qScroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         outgoing = new JTextField(20);
+        outgoing.addActionListener(new enterListener());
         setName=new JTextField(20);
+        setName.addActionListener(new setNameListener());
         sendButton = new JButton("Send");
         sendButton.setEnabled(false);
         ok=new JButton("Set Name");
@@ -58,7 +60,7 @@ public class SimpleChatClient
     
     private void setUpNetworking() {
         try {
-            sock = new Socket("180.148.49.143", 5000);
+            sock = new Socket("127.0.0.1", 5000);
             InputStreamReader streamReader = new InputStreamReader(sock.getInputStream());
             reader = new BufferedReader(streamReader);
             writer = new PrintWriter(sock.getOutputStream());
@@ -75,6 +77,7 @@ public class SimpleChatClient
     		name=setName.getText();
     		setName.setEditable(false);
     		sendButton.setEnabled(true);
+    		outgoing.requestFocus();
     	}
     }
     public class SendButtonListener implements ActionListener {
@@ -92,7 +95,31 @@ public class SimpleChatClient
             outgoing.requestFocus();
         }
     }
+    public class enterListener implements ActionListener{
+    	public void actionPerformed(ActionEvent ev) {
+            try {
+            	writer.print(name+": ");
+                writer.print(outgoing.getText()+"\n");
+                writer.flush();
+                
+            }
+            catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            outgoing.setText("");
+            outgoing.requestFocus();
+        }
+    }
+    public class setNameListener implements ActionListener{
+    	public void actionPerformed(ActionEvent e){
+    		ok.setEnabled(false);
+    		name=setName.getText();
+    		setName.setEditable(false);
+    		sendButton.setEnabled(true);
+    		outgoing.requestFocus();
+    	}
     
+    }
     public static void main(String[] args) {
         new SimpleChatClient().go();
     }
